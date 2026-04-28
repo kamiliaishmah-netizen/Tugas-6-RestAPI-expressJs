@@ -39,9 +39,7 @@ app.post("/mahasiswa", (req, res) => {
         res.json({ message: "Data berhasil ditambahkan" });
     });
 });
-// =======================
-// JALANKAN SERVER
-// =======================
+
 app.listen(3000, () => {
     console.log("Server jalan di http://localhost:3000");
 });
