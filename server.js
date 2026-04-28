@@ -4,12 +4,10 @@ const cors = require("cors");
 
 const app = express();
 
-// middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// koneksi database
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -23,9 +21,6 @@ db.connect(err => {
 });
 
 
-// =======================
-// API GET (lihat data)
-// =======================
 app.get("/mahasiswa", (req, res) => {
     db.query("SELECT * FROM mahasiswa", (err, result) => {
         if (err) throw err;
@@ -34,9 +29,6 @@ app.get("/mahasiswa", (req, res) => {
 });
 
 
-// =======================
-// API POST (tambah data)
-// =======================
 app.post("/mahasiswa", (req, res) => {
     const { nama, nim, jurusan } = req.body;
 
@@ -47,8 +39,6 @@ app.post("/mahasiswa", (req, res) => {
         res.json({ message: "Data berhasil ditambahkan" });
     });
 });
-
-
 // =======================
 // JALANKAN SERVER
 // =======================
