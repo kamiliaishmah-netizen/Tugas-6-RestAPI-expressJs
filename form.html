@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Tambah Mahasiswa</h2>
+
+<form id="formMahasiswa">
+    Nama: <input type="text" name="nama"><br>
+    NIM: <input type="text" name="nim"><br>
+    Jurusan: <input type="text" name="jurusan"><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById("formMahasiswa")
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const data = {
+        nama: this.nama.value,
+        nim: this.nim.value,
+        jurusan: this.jurusan.value
+    };
+
+    await fetch("http://localhost:3000/mahasiswa", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    alert("Data berhasil dikirim!");
+});
+</script>
+
+</body>
+</html>

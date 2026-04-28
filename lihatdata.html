@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Data Mahasiswa</h2>
+
+<button onclick="loadData()">Load Data</button>
+
+<table border="1">
+<thead>
+<tr>
+<th>Nama</th>
+<th>NIM</th>
+<th>Jurusan</th>
+</tr>
+</thead>
+
+<tbody id="data"></tbody>
+</table>
+
+<script>
+async function loadData(){
+    const res = await fetch("http://localhost:3000/mahasiswa");
+    const data = await res.json();
+
+    let html = "";
+
+    data.forEach(m => {
+        html += `
+        <tr>
+            <td>${m.nama}</td>
+            <td>${m.nim}</td>
+            <td>${m.jurusan}</td>
+        </tr>`;
+    });
+
+    document.getElementById("data").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
